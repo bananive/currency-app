@@ -5,7 +5,7 @@
       <label for="from" class="control-label">You pay</label>
       <div class="input-group">
         <div class="input-group-prepend">
-          <p-dropdown [options]="currencies" [(ngModel)]="from" optionLabel="code" placeholder="From">
+          <p-dropdown [options]="currencies" [(ngModel)]="from" optionLabel="code" placeholder="From" (onChange)="onChangeCurrency()">
             <ng-template pTemplate="selectedItem">
                 <div class="country-item country-item-value"  *ngIf="from">
                     <img src="assets/flag_placeholder.png" [class]="'flag flag-' + from.code.toLowerCase()" />
@@ -13,7 +13,7 @@
                 </div>
             </ng-template>
             <ng-template let-country pTemplate="item">
-                <div class="country-item">
+                <div class="country-item" [title]="country.value.name">
                     <img src="assets/flag_placeholder.png" [class]="'flag flag-' + country.value.code.toLowerCase()" />
                     <span>{{country.value.code}}</span>
                 </div>
@@ -27,29 +27,29 @@
     <div class="exchange-rate">
       <div class="exchange-rate-card">
         <a href="privacy" class="exchange-rate-label">Exchange rate</a>
-        <span class="exchange-rate-item">0.2384</span>
+        <span class="exchange-rate-item">{{rate}}</span>
       </div>
     </div>
     <div class="form-group">
       <label for="to" class="control-label">Go Media will get</label>
       <div class="input-group">
         <div class="input-group-prepend">
-          <p-dropdown [options]="currencies" [(ngModel)]="to" optionLabel="code" placeholder="To">
+          <p-dropdown [options]="currencies" [(ngModel)]="to" optionLabel="code" placeholder="To" (onChange)="onChangeCurrency()">
             <ng-template pTemplate="selectedItem">
-                <div class="country-item country-item-value"  *ngIf="to">
+                <div class="country-item country-item-value"  *ngIf="to" [title]="to.name">
                     <img src="assets/flag_placeholder.png" [class]="'flag flag-' + to.code.toLowerCase()" />
                     <span>{{to.code}}</span>
                 </div>
             </ng-template>
             <ng-template let-country pTemplate="item">
-                <div class="country-item">
+                <div class="country-item" [title]="country.value.name">
                     <img src="assets/flag_placeholder.png" [class]="'flag flag-' + country.value.code.toLowerCase()" />
                     <span>{{country.value.code}}</span>
                 </div>
             </ng-template>
           </p-dropdown>
         </div>
-        <input type="text" id="to" class="form-control">
+        <input type="text" id="to" class="form-control" [(ngModel)]="result">
       </div>
     </div>
   </div>

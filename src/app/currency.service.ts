@@ -15,15 +15,7 @@ export class CurrencyService {
     return this.http.get<any>(`${apiUrl}/list?access_key=${key}`);
   }
 
-  convert(from, to, amount): any {
-    return this.http.get<any>(`${apiUrl}/convert?from=${from}&to=${to}&amount=${amount}&access_key=${key}`);
-  }
-
-  liveRate(source, currencies): any {
-    return this.http.get<any>(`${apiUrl}/live?access_key=${key}&currencies=${currencies}&source=${source}&format=1`);
-  }
-
-  latest(): any {
-    return this.http.get<any>(`https://api.exchangeratesapi.io/latest?symbols=USD,GBP`);
+  getLatestRate(from, to): any {
+    return this.http.get<any>(`https://api.exchangeratesapi.io/latest?base=${from}&symbols=${to}`);
   }
 }
